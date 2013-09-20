@@ -22,6 +22,8 @@ $ rm -rf beamer-stub.git # Remove temporary local repo
 
 5. If using Git + TeXlipse Eclipse plugins, you can now "Import -> Git -> Projects from Repository -> Local", add the new local repo, and then select it as the project source.
 
+6. If you already have the beamer-stub locally, you can skip to the "git push..." step in 3 and then skip the remaining commands in 3.
+
 ===============
 
 LICENSE
