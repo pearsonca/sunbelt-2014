@@ -13,6 +13,13 @@
 
 \newcommand{\bskip}{\\~\\}
 
+\newcommand{\checkitem}{\item[\Checkmark]}
+\newcommand{\xitem}{\item[\XSolidBrush]}
+\newcommand{\mehitem}{\item[$\approx$]}
+\newcommand{\easyframe}[2]{\frame{\frametitle{#1}
+#2
+}}
+
 \author[Pearson]{Carl~A.~B.~Pearson}
 
 \begin{document}
@@ -24,8 +31,7 @@ Emerging Pathogens Institute, University of Florida
 }
 \frame{\titlepage}
 
-\frame{
-\frametitle{A SIMPLE LIST OF POINTS}
+\easyframe{A SIMPLE LIST OF POINTS}{
 \begin{itemize}
 \item point one,
 \item two,
@@ -34,8 +40,7 @@ Emerging Pathogens Institute, University of Florida
 % notes-notes-notes
 }
 
-\frame{
-\frametitle{INSERTING AN R-GENERATED FIGURE}
+\easyframe{INSERTING AN R-GENERATED FIGURE}{
 \begin{figure}
 \begin{center}
 <<plotfig1,fig=TRUE,echo=FALSE>>=
