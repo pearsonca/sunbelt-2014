@@ -10,3 +10,6 @@
 *.gz
 *.toc
 cacheSweaveStorage*
+.Rproj.user/*
+
+template-*.pdf
