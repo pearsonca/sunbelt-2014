@@ -43,8 +43,7 @@
 \item[Network Problems] what goes in (a simulation) is what comes out
 \item[A Meth Bust ``Network''] circa 70s Australia
 \item[Simulating Production] Breaking Bad?
-\item[Layering on Observation] Monitoring Events
-\item[Next Steps] Intervention Outcomes, Competition, Adaptation
+\item[Next Steps] Observation Model, Intervention Outcomes, Competition, Adaptation
 
 \end{description}
 % notes-notes-notes
@@ -138,6 +137,14 @@ TODO series of background plots
 \end{description}
 }
 
+\easyframe{TODO}{
+\begin{block}{Next Steps}\begin{itemize}
+\item[Observation Model] translate simulate outputs via filter to observations
+\item[Group Dynamics] intra- and intergroup competition, turnover of employees, customers 
+\item[Intervention Outcomes] single gang interventions, evolution of competing gangs
+\end{itemize}
+\end{block}
+}
 
 \easyframe{QUESTIONS?}{
 talk and simulation source available at \\~\\
