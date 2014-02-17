@@ -107,7 +107,7 @@ Agents try to net their margin per iteration.  Demand for meth inelastic.  No ec
 }
 \setbeamercovered{}
 
-\easyframe{PARAMETER ESTIMATES\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}}{
+\easyframe{PARAMETER ESTIMATES\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}\cite{australian2008australiancrime}}{
 Use kilograms as reference mass unit, AUS \$\ as reference price unit
 \begin{description}
 \item[Unit Meth per Unit Pseudo] 0.9
