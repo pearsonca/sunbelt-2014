@@ -1,8 +1,20 @@
 \begin{thebibliography}{1}
 
-\bibitem{someref}
-Carl A~B Pearson.
-\newblock Reference title.
-\newblock In {\em Book Title}, pages 1--1000. Springer, 1999.
+\bibitem{gong2012profitable}
+Wendy Gong, Alison Ritter, David Bright, and Chris Doran.
+\newblock How profitable is methamphetamine dealing in australia?
+\newblock {\em Drug and alcohol dependence}, 122(3):208--212, 2012.
+
+\bibitem{mcketin2005estimating}
+Rebecca McKetin, J.~McLaren, E.~Kelly, W.~Hall, and Hickman.
+\newblock {\em Estimating the number of regular and dependent methamphetamine
+  users in Australia}.
+\newblock National Drug and Alcohol Research Centre, 2005.
+
+\bibitem{ritter2012evaluating}
+Alison Ritter, David Bright, and Wendy Gong.
+\newblock {\em Evaluating drug law enforcement interventions directed towards
+  methamphetamine in Australia}.
+\newblock National Drug Law Enforcement Research Fund (NDLERF), 2012.
 
 \end{thebibliography}

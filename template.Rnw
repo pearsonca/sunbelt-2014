@@ -37,335 +37,124 @@
 }
 \usebackgroundtemplate{}
 
-\easyframe{A SIMPLE LIST OF POINTS}{
+\easyframe{Overview}{
+
+\begin{description}
+\item[Network Problems] what goes in (a simulation) is what comes out
+\item[A Meth Bust ``Network''] circa 70s Australia
+\item[Simulating Production] Breaking Bad?
+\item[Layering on Observation] Monitoring Events
+\item[Next Steps] Intervention Outcomes, Competition, Adaptation
+
+\end{description}
+% notes-notes-notes
+}
+
+\easyframe{NETWORKS ARE NOT THE PHENOMENA}{
 \begin{itemize}
-\item The Problem With Networks,
-\item two,
-\item see
+\item<2-> What is? Context dependent.
+\item<3-> What do we observe? Interaction events, environmental changes.
+\item<4-> A network is a representation
+\item<5-> For some cases: that's useful - can reliably observe events, translate to network, calculate property with predictive power relative to some future outcome
+\item<6-> For ``dark'' networks - highly questionable
 \end{itemize}
-% notes-notes-notes
+
+% In, say, a school setting let's imagine I'm "popular" (clearly not historically accurate).
+% The phenomena is not that I say I'm friends with a lot of people, and that they agree -
+% it is that I get preferential treatment in this context.  That treatment may correlate with
+% some calculated property of the network based on friendship network for some specific context
+%
+% 
 }
 
-\easyframe{NETWORKS ARE NOT\footnote{some physical systems aside} THE PHENOMENA}{
+% transition: let's consider an example dark network
+
+\easyframe{PROSECUTED METH PRODUCTION \&\ DISTRIBUTION GROUP}{
+TODO: INSERT PLOT AS BACKGROUND
 \begin{itemize}
-\item The Problem With Networks,
-\item two,
-\item see
-\end{itemize}
-
-% notes-notes-notes
-}
-
-\easyframe{INSERTING AN R-GENERATED FIGURE}{
-\begin{figure}
-\begin{center}
-<<plotfig1,fig=TRUE,echo=FALSE>>=
-periodT <- 366; omega <- 2*pi/periodT
-monthDays<-c(31,29,31,30,31,30,31,31,30,31,30,31)
-monthOffset<- -(rev(cumsum(monthDays)) + -periodT/2)
-monthInset<- monthOffset + 15
-fun <- function(x) { cos(omega*x) }
-cplot <- function() {
-plot(fun, xlim=c(-periodT/2,periodT/2), 
-     xlab="",yaxt="n",xaxt="n",ylab="Mosquito Abundance",type="l",col="blue")
-axis(side=1, at=c(monthOffset,periodT/2), labels=F)
-axis(side=1, at=monthInset, labels=c("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"),tick=F, cex.axis=0.7)
-}
-cplot()
-@
-\end{center}
-\end{figure}
-% notes-notes-notes
-}
-
-\frame{
-\frametitle{INSERT ANOTHER PDF}
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\textwidth]{insert.pdf}
-\caption{Bicout et al. J. Med. Entomol. 43(5): 936-946 (2006)}
-\end{center}
-\end{figure}
-% this is a not uncommon measurement of a seasonally varying vector population.
-}
-
-\frame{
-\frametitle{SHOW SOME MATH}
-$$
-M(t) = C\sin(\omega t+\theta)
-$$
-}
-
-% plotfig1
-\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{template-plotfig1.pdf}}
-\frame{
-\frametitle{USE PREVIOUSLY GENERATING THING AS BACKGROUND}
-\begin{itemize}
-\item with
-\item some
-\item text
-\item over it
+\item<2-> individuals convicted, connected by association, from public record prosecutorial data
+\item<3-> how might this data be flawed?
+\item<4-> if we take this as the model, even after adding roles, what do we know is unrepresented?
+\item<5-> given those issues: does simulation on this network -- which includes deriving network statistics and predictions from them -- make sense?
 \end{itemize}
 }
-\usebackgroundtemplate{}
 
+\easyframe{SIMULATING METH PRODUCTION}{
+\begin{block}{AKA, answer the last question formally}
+\begin{itemize}
+\item<2-> Prosecution data hypothesize roles
+\item<3-> use as basis for mechanical description
+\item<4-> simulate that enterprise
+\item<5-> compare measures -- pseudoephedrine consumption, methamphetamine production, net profit rates -- to available estimates
+\end{itemize}
+\end{block}
 
-\frame{
-\frametitle{SEVERAL EQUATIONS}
-\begin{align*}
-E(t) &= \begin{cases}
-        \dfrac{\Mp}{\Dt} & t \in \Dt \\
-        0 & \textrm{otherwise}
-        \end{cases}\tag{Step} \\
-E(\rho, t) &= \begin{cases}
-        \dfrac{2\Mp}{\Dt(2-\rho)} & t \in \Dt(1-\rho) \\
-        \dfrac{2\Mp}{\Dt(2-\rho)\rho}\left(1-\dfrac{2|t|}{\Dt}\right) & t \in \rho\Dt \\
-        0 & \textrm{otherwise}
-        \end{cases}\tag{Modified Step} \\
-E(t) &= \dfrac{2\Mp}{\Dt}\sqrt{\dfrac{2}{\pi}}e^{-\dfrac{8t^2}{\Dt^2}}\tag{Approximate $\delta$}
-\end{align*}
 }
 
-% DEFINE LOTS OF R...
-<<figcode,echo=FALSE>>=
-periodT <- 100
-rhoT <- 0.2
-Mp <- 100
-resolution <- 0.0001
-lambda <- 0.1
-deltaT <- periodT * rhoT
-MpDt <- Mp / deltaT
-barMpDrho <- Mp / (rhoT * periodT)
-xlim <- c(-periodT/2,periodT/2)
-xtime <- seq(xlim[1],xlim[2],periodT*resolution)
-MStepPeak <- Mp / (lambda*deltaT) * (1 - exp(-lambda*deltaT)) / (1 - exp(-lambda*periodT))
+\setbeamercovered{transparent}
+\easyframe{SIMULATING METH PRODUCTION}{
+\begin{block}{Relatively few parts, all written in Scala}
+\begin{description}
+\item[\texttt{World}]<2> meth consumption rate, pseudo cost 
+\item[\texttt{Supplier}s, \texttt{Retailer}s, \texttt{Wholesaler}]<3> margins and purchase or delivery efficiencies
+\item[\texttt{Middleman}]<4> margin, efficiency
+\item[\texttt{Cook}]<5> margin, pseudo conversion efficiency
+\end{description}
+\end{block}
+\begin{block}{SIMPLE ECONOMIC FORCES ONLY}
+Agents try to net their margin per iteration.  Demand for meth inelastic.  No economies of scale.
+\end{block}
+}
+\setbeamercovered{}
 
-Tlambda <- periodT*lambda
-taulim <- c(-1/2,1/2)
-xtau <- seq(taulim[1],taulim[2],resolution)
-D <- 1 / (exp(Tlambda) - 1)
-library(bvpSolve)
-Msol<-function(E) {
-  bvpshoot(
-    yini=c(y1=NA),
-    x=xtime,
-    func=function(t,y,parms) {
-      list(c(E(t) - lambda*y[1]))
-    },
-    guess=c(Mp/periodT),
-    yend=function(Y,yini,parms) {
-      c(Y[1] - yini[1])
-    }, 
-    parms=c(E=E,lambda=lambda),
-    maxiter=1e6
-  )
-}
-Mplot <- function(E,ylim=c(0,1.5*MStepPeak)) {
-  sol <- Msol(E)
-  plot(sol[,1],sol[,2],
-       type="l",
-       xlim=xlim,
-       ylim=ylim,
-       ylab="", xlab="",
-       xaxs="i", yaxs="i",
-       xaxp=c(-periodT/2,periodT/2,10),
-       bty="n")
-}
-MplotAdder<-function(Eref) {
-  refSol <- Msol(Eref)
-  function(E) {
-    plot(refSol[,1],refSol[,2],
-         type="l",
-         xlim=c(-periodT/2,periodT/2),
-         ylim=c(0,1.5*MStepPeak),
-         ylab="", xlab="",
-         xaxt="n", yaxt="n", lwd=2,
-         #xaxp=c(-periodT/2,periodT/2,10),
-         bty="n",col="lightgray")
-    axis(2,seq(0,1.5*MStepPeak,.5*MStepPeak),FALSE)
-    axis(3,seq(-periodT/2,periodT/2,10),FALSE)
-    sol <- Msol(E)
-    lines(sol[,1],sol[,2],lwd=2)
-  }
-}
-EplotAdder<-function(Eref) {
-  ytime <- Eref(xtime)
-  function(E) {
-    plot(xtime,ytime,
-         type="S",
-         xlim=c(-periodT/2,periodT/2),
-         ylim=c(0,2*MpDt),
-         ylab="", xlab="",
-         xaxt="n", yaxt="n", lwd=2,
-         #xaxp=c(-periodT/2,periodT/2,10),
-         bty="n",col="lightgray")
-    axis(2,seq(0,2*MpDt,.5*MpDt),FALSE)
-    axis(1,seq(-periodT/2,periodT/2,10),labels=FALSE)
-    lines(xtime,E(xtime),lwd=2)
-  }
-}
-# E function factories
-stopper<-function(which, deltaT=1,MpDt=1,rho=0,periodT=1,Mp=1) {
-  if (deltaT <= 0 | MpDt <= 0 | rho < 0 | rho > 1 | periodT <= 0 | Mp <= 0)
-    stop(paste(which,": check arguments",sep=" "))
-}
-# step and modified step functions
-EstepFac <- function(deltaT, MpDt, rho=0) {
-  stopper("EstepFac", deltaT=deltaT, MpDt=MpDt, rho=rho)
-  b <- deltaT/2
-  if (rho == 0) { # step function
-    function(t) {
-      ifelse(abs(t) <= b, MpDt, 0)
-    }
-  } else {
-    base <- 2*MpDt / (2-rho)
-    sloped<-function(abst) { (base/rho)*(1-abst/b) }
-    if (rho != 1) { # trapezoid
-      function(t) {
-        abst<-abs(t)
-        ifelse( abst<=b,
-                ifelse( abst<=b*(1-rho),
-                        base,
-                        sloped(abst)
-                )
-          ,0)
-      }
-    } else { # triangle
-      function(t) { 
-        abst<-abs(t)
-        ifelse( abst<=b, sloped(abst) ,0)
-      }
-    }
-  }
+\easyframe{PARAMETER ESTIMATES\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}}{
+Use kilograms as reference mass unit, AUS \$\ as reference price unit
+\begin{description}
+\item[Unit Meth per Unit Pseudo] 0.9
+\item[Meth Conversion Efficiency] 0.5 - 1.0
+\item[Meth Consumption] average 10 doses per user per month, 0.0001 units per dose, 20 users per capita
+\item[thing] margins and purchase or delivery efficiencies
+\item[\texttt{Middleman}] margin, efficiency
+\item[\texttt{Cook}] margin, pseudo conversion efficiency
+\end{description}
 }
 
-# delta function
-EdeltaFac <- function(deltaT, MpDt) {
-  stopper("EdeltaFac", deltaT=deltaT, MpDt=MpDt)
-  C <- MpDt * 2 * sqrt( 2/pi )
-  var <- -8 / deltaT^2
-  function(t) {
-    C * exp(var * t^2)
-  }
-} 
+\setbeamercovered{transparent}
+\easyframe{STEADY STATE RESULTS}{
+\begin{description}
+\item[Street Price]<1>X per dose vs observed Y per dose
+\item[Gang Takehome]<2>X per month vs observed Y per month
+\end{description}
+}
+\setbeamercovered{}
 
-# delta function composed with trigonometric function
-EdeltaTrigFac <- function(deltaT, MpDt, periodT) {
-  stopper("EdeltaTrigFac", deltaT=deltaT, MpDt=MpDt, periodT=periodT)
-  w <- pi / periodT
-  C <- MpDt * 2*sqrt( 2/pi )
-  var <- -8 / (w*deltaT)^2
-  function(t) {
-    C * exp(var * sin(w*t)^2)
-  }
+\easyframe{PERTURBATIONS}{
+TODO series of background plots
+\begin{description}
+\item Increase Pseudo Cost at time T
+\item Increase Demand at time T
+\item Increase Margins at time T
+\item Decrease efficiencies at time T
+\end{description}
 }
 
-# conventional trig-based function for seasonality
-EtrigFac <- function(Mp, periodT) { 
-  stopper("EtrigFac",Mp=Mp, periodT=periodT)
-  C <- Mp / periodT
-  w <- 2 * pi / periodT
-  function(t) {
-    C *(1+cos(w*t))
-  }
-} 
 
-# trig-based function w/ parameter to squeeze peak
-EtrigPropFac <- function(Mp, deltaT, periodT) {
-  stopper("EtrigPropFac",Mp=Mp, deltaT=deltaT, periodT=periodT)
-  omega <- pi / periodT
-  n <- floor((2*sin( pi*deltaT / (periodT*2) )^2)^(-1))
-  topf <- factorial(n)
-  bf <- factorial(2*n)
-  C <- 2^(2*n)*topf^2 / (periodT*bf) * Mp
-  function(t) {
-    C*cos(omega * t)^(2*n)
-  }
-} 
-
-# double logistic
-E2logFac<-function(Mp,deltaT,c) {
-  stopper("E2logFac", Mp=Mp, deltaT=deltaT)
-  C <- Mp / deltaT 
-  cdt <- c*deltaT / 2
-  function(t) {
-    C * ((1+exp(-c*t - cdt))^(-1) - (1+exp(-c*t + cdt))^(-1))
-  }
-}
-Estep <- EstepFac(deltaT,MpDt); # check("estep",Estep)
-Etrap <- EstepFac(deltaT, MpDt, .5); # check("etrap",Etrap)
-Etri <- EstepFac(deltaT, MpDt, 1); # check("etri",Etri)
-Edelta <- EdeltaFac(deltaT, MpDt); # check("edelta",Edelta)
-Edeltatrig <- EdeltaTrigFac(deltaT, MpDt, periodT); # check("edeltatrig",Edeltatrig)
-Etrig <- EtrigFac(Mp,periodT); # check("etrig",Etrig)
-Etrigprop <- EtrigPropFac(Mp,deltaT,periodT); # check("etrigprop",Etrigprop)
-E2log<-E2logFac(Mp,deltaT,1); # check("e2log",E2log)
-EtAdder<-EplotAdder(Estep)
-MpAdder<-MplotAdder(Estep)
-PlotStacker<-function(E,name) {
-  par(mfcol=c(2,1),mar=c(2,2,1,1))
-  EtAdder(E)
-  MpAdder(E)
-}
-@
-
-% THEN USE IT SEVERAL TIMES
-\frame{
-\frametitle{Modified Step (Trapezoid)}
-\begin{figure}
-\begin{center}
-<<pstrap,echo=FALSE,fig=TRUE>>=
-PlotStacker(Etrap)
-@
-\end{center}
-\end{figure}
+\easyframe{QUESTIONS?}{
+talk and simulation source available at \\~\\
+https://github.com/pearsonca/sunbelt-2014 \\~\\
+https://github.com/pearsonca/scala-commsim
 }
 
-\frame{
-\frametitle{Modified Step (Triangle)}
-\begin{figure}
-\begin{center}
-<<pstri,echo=FALSE,fig=TRUE>>=
-PlotStacker(Etri)
-@
-\end{center}
-\end{figure}
-}
-
-\frame{
-\frametitle{Approx. $\delta$}
-\begin{figure}
-\begin{center}
-<<psdel,echo=FALSE,fig=TRUE>>=
-PlotStacker(Edelta)
-@
-\end{center}
-\end{figure}
-}
-
-\frame{
-\frametitle{USING COLUMNS EXAMPLE}
-\begin{columns}[t]
-\begin{column}{0.3\textwidth}
-TEXT LEFT, FIG RIGHT\cite{someref}
-\end{column}
-\begin{column}{0.7\textwidth}
-\begin{figure}
-\begin{center}
-\includegraphics[width=1.1\textwidth]{justone.pdf}
-\end{center}
-\end{figure}
-\end{column}
-
-\end{columns}
-% notes-notes-notes
-}
-
-\frame{
-\frametitle{BIBLIOGRAPHY EXAMPLE (CITE ON PREV SLIDE)}
+\easyframe{REFERENCES}{
 \footnotesize
 \bibliography{biblio}{}
 \bibliographystyle{plain}
+}
+
+\easyframe{SUPPORTING MATERIAL}{
+\begin{block}{Meth Consumption}
+100 mg per dose; per capita: roughly 10 ``regular'' users (between weekly and monthly dose), roughly 10 ``dependent'' users
+\end{block}
 }
 
 \end{document}

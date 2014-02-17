@@ -38,135 +38,124 @@
 }
 \usebackgroundtemplate{}
 
-\easyframe{A SIMPLE LIST OF POINTS}{
+\easyframe{Overview}{
+
+\begin{description}
+\item[Network Problems] what goes in (a simulation) is what comes out
+\item[A Meth Bust ``Network''] circa 70s Australia
+\item[Simulating Production] Breaking Bad?
+\item[Layering on Observation] Monitoring Events
+\item[Next Steps] Intervention Outcomes, Competition, Adaptation
+
+\end{description}
+% notes-notes-notes
+}
+
+\easyframe{NETWORKS ARE NOT THE PHENOMENA}{
 \begin{itemize}
-\item The Problem With Networks,
-\item two,
-\item see
+\item<2-> What is? Context dependent.
+\item<3-> What do we observe? Interaction events, environmental changes.
+\item<4-> A network is a representation
+\item<5-> For some cases: that's useful - can reliably observe events, translate to network, calculate property with predictive power relative to some future outcome
+\item<6-> For ``dark'' networks - highly questionable
 \end{itemize}
-% notes-notes-notes
+
+% In, say, a school setting let's imagine I'm "popular" (clearly not historically accurate).
+% The phenomena is not that I say I'm friends with a lot of people, and that they agree -
+% it is that I get preferential treatment in this context.  That treatment may correlate with
+% some calculated property of the network based on friendship network for some specific context
+%
+% 
 }
 
-\easyframe{NETWORKS ARE NOT\footnote{some physical systems aside} THE PHENOMENA}{
+% transition: let's consider an example dark network
+
+\easyframe{PROSECUTED METH PRODUCTION \&\ DISTRIBUTION GROUP}{
+TODO: INSERT PLOT AS BACKGROUND
 \begin{itemize}
-\item The Problem With Networks,
-\item two,
-\item see
-\end{itemize}
-
-% notes-notes-notes
-}
-
-\easyframe{INSERTING AN R-GENERATED FIGURE}{
-\begin{figure}
-\begin{center}
-\includegraphics{template-plotfig1}
-\end{center}
-\end{figure}
-% notes-notes-notes
-}
-
-\frame{
-\frametitle{INSERT ANOTHER PDF}
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.9\textwidth]{insert.pdf}
-\caption{Bicout et al. J. Med. Entomol. 43(5): 936-946 (2006)}
-\end{center}
-\end{figure}
-% this is a not uncommon measurement of a seasonally varying vector population.
-}
-
-\frame{
-\frametitle{SHOW SOME MATH}
-$$
-M(t) = C\sin(\omega t+\theta)
-$$
-}
-
-% plotfig1
-\usebackgroundtemplate{\includegraphics[width=0.9\paperheight,height=0.9\paperheight]{template-plotfig1.pdf}}
-\frame{
-\frametitle{USE PREVIOUSLY GENERATING THING AS BACKGROUND}
-\begin{itemize}
-\item with
-\item some
-\item text
-\item over it
+\item<2-> individuals convicted, connected by association, from public record prosecutorial data
+\item<3-> how might this data be flawed?
+\item<4-> if we take this as the model, even after adding roles, what do we know is unrepresented?
+\item<5-> given those issues: does simulation on this network -- which includes deriving network statistics and predictions from them -- make sense?
 \end{itemize}
 }
-\usebackgroundtemplate{}
 
+\easyframe{SIMULATING METH PRODUCTION}{
+\begin{block}{AKA, answer the last question formally}
+\begin{itemize}
+\item<2-> Prosecution data hypothesize roles
+\item<3-> use as basis for mechanical description
+\item<4-> simulate that enterprise
+\item<5-> compare measures -- pseudoephedrine consumption, methamphetamine production, net profit rates -- to available estimates
+\end{itemize}
+\end{block}
 
-\frame{
-\frametitle{SEVERAL EQUATIONS}
-\begin{align*}
-E(t) &= \begin{cases}
-        \dfrac{\Mp}{\Dt} & t \in \Dt \\
-        0 & \textrm{otherwise}
-        \end{cases}\tag{Step} \\
-E(\rho, t) &= \begin{cases}
-        \dfrac{2\Mp}{\Dt(2-\rho)} & t \in \Dt(1-\rho) \\
-        \dfrac{2\Mp}{\Dt(2-\rho)\rho}\left(1-\dfrac{2|t|}{\Dt}\right) & t \in \rho\Dt \\
-        0 & \textrm{otherwise}
-        \end{cases}\tag{Modified Step} \\
-E(t) &= \dfrac{2\Mp}{\Dt}\sqrt{\dfrac{2}{\pi}}e^{-\dfrac{8t^2}{\Dt^2}}\tag{Approximate $\delta$}
-\end{align*}
 }
 
-% DEFINE LOTS OF R...
+\setbeamercovered{transparent}
+\easyframe{SIMULATING METH PRODUCTION}{
+\begin{block}{Relatively few parts, all written in Scala}
+\begin{description}
+\item[\texttt{World}]<2> meth consumption rate, pseudo cost 
+\item[\texttt{Supplier}s, \texttt{Retailer}s, \texttt{Wholesaler}]<3> margins and purchase or delivery efficiencies
+\item[\texttt{Middleman}]<4> margin, efficiency
+\item[\texttt{Cook}]<5> margin, pseudo conversion efficiency
+\end{description}
+\end{block}
+\begin{block}{SIMPLE ECONOMIC FORCES ONLY}
+Agents try to net their margin per iteration.  Demand for meth inelastic.  No economies of scale.
+\end{block}
+}
+\setbeamercovered{}
 
-% THEN USE IT SEVERAL TIMES
-\frame{
-\frametitle{Modified Step (Trapezoid)}
-\begin{figure}
-\begin{center}
-\includegraphics{template-pstrap}
-\end{center}
-\end{figure}
+\easyframe{PARAMETER ESTIMATES\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}}{
+Use kilograms as reference mass unit, AUS \$\ as reference price unit
+\begin{description}
+\item[Unit Meth per Unit Pseudo] 0.9
+\item[Meth Conversion Efficiency] 0.5 - 1.0
+\item[Meth Consumption] average 10 doses per user per month, 0.0001 units per dose, 20 users per capita
+\item[thing] margins and purchase or delivery efficiencies
+\item[\texttt{Middleman}] margin, efficiency
+\item[\texttt{Cook}] margin, pseudo conversion efficiency
+\end{description}
 }
 
-\frame{
-\frametitle{Modified Step (Triangle)}
-\begin{figure}
-\begin{center}
-\includegraphics{template-pstri}
-\end{center}
-\end{figure}
+\setbeamercovered{transparent}
+\easyframe{STEADY STATE RESULTS}{
+\begin{description}
+\item[Street Price]<1>X per dose vs observed Y per dose
+\item[Gang Takehome]<2>X per month vs observed Y per month
+\end{description}
+}
+\setbeamercovered{}
+
+\easyframe{PERTURBATIONS}{
+TODO series of background plots
+\begin{description}
+\item Increase Pseudo Cost at time T
+\item Increase Demand at time T
+\item Increase Margins at time T
+\item Decrease efficiencies at time T
+\end{description}
 }
 
-\frame{
-\frametitle{Approx. $\delta$}
-\begin{figure}
-\begin{center}
-\includegraphics{template-psdel}
-\end{center}
-\end{figure}
+
+\easyframe{QUESTIONS?}{
+talk and simulation source available at \\~\\
+https://github.com/pearsonca/sunbelt-2014 \\~\\
+https://github.com/pearsonca/scala-commsim
 }
 
-\frame{
-\frametitle{USING COLUMNS EXAMPLE}
-\begin{columns}[t]
-\begin{column}{0.3\textwidth}
-TEXT LEFT, FIG RIGHT\cite{someref}
-\end{column}
-\begin{column}{0.7\textwidth}
-\begin{figure}
-\begin{center}
-\includegraphics[width=1.1\textwidth]{justone.pdf}
-\end{center}
-\end{figure}
-\end{column}
-
-\end{columns}
-% notes-notes-notes
-}
-
-\frame{
-\frametitle{BIBLIOGRAPHY EXAMPLE (CITE ON PREV SLIDE)}
+\easyframe{REFERENCES}{
 \footnotesize
 \bibliography{biblio}{}
 \bibliographystyle{plain}
+}
+
+\easyframe{SUPPORTING MATERIAL}{
+\begin{block}{Meth Consumption}
+100 mg per dose; per capita: roughly 10 ``regular'' users (between weekly and monthly dose), roughly 10 ``dependent'' users
+\end{block}
 }
 
 \end{document}
