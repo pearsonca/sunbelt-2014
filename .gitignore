@@ -16,3 +16,5 @@ template-*.pdf
 .Rproj.user
 
 *.bbl
+
+.Rhistory
