@@ -39,6 +39,7 @@ fill=white!10, fill opacity=0.75,text opacity=1] \bgroup%
 \author{Carl~A.~B.~Pearson\inst{1} \and Burton~H.~Singer\inst{1} \and David~A.~Bright\inst{2}}
 \institute{Emerging Pathogens Institute, University of Florida\inst{1} \and School of Social Sciences, University of New South Wales\inst{2}}
 \date{19 FEB 14}
+
 \usebackgroundtemplate{
 \vtop to 0.9\paperheight{\vfill\hbox to \paperwidth{\hfill\includegraphics[width=0.2\paperwidth]{uf.png}\hfill\includegraphics[width=0.2\paperwidth]{unsw.png}\hfill}} }
 \frame{\titlepage\vfill}
@@ -52,24 +53,22 @@ fill=white!10, fill opacity=0.75,text opacity=1] \bgroup%
 \usebackgroundtemplate{}
 
 \easyframe{Overview}{
-
-\begin{description}
-\item[Network Problems] what goes in (a simulation) is what comes out
-\item[A Meth Bust ``Network''] circa 70s Australia
-\item[Simulating Production] Breaking Bad?
-\item[Next Steps] Observation Model, Intervention Outcomes, Competition, Adaptation
-
-\end{description}
+\begin{enumerate}
+\item<1-> SNA Concerns Re Dark Networks
+\item<2-> A Meth Bust Network
+\item<3-> Simulating Production
+\item<4-> Next Steps
+\end{enumerate}
 % notes-notes-notes
 }
 
 \easyframe{NETWORKS ARE NOT THE PHENOMENA}{
 \begin{itemize}
-\item<2-> What is? Context dependent.
-\item<3-> What do we observe? Interaction events, environmental changes.
-\item<4-> A network is a representation
-\item<5-> For some cases: that's useful - can reliably observe events, translate to network, calculate property with predictive power relative to some future outcome
-\item<6-> For ``dark'' networks - highly questionable
+\item<1-> What is? Context dependent.
+\item<2-> What do we observe? Interaction events, environmental changes.
+\item<3-> A network is a representation
+\item<4-> For some cases: that's useful - can reliably observe events, translate to network, calculate property with predictive power relative to some future outcome
+\item<5-> For ``dark'' networks - highly questionable
 \end{itemize}
 
 % In, say, a school setting let's imagine I'm "popular" (clearly not historically accurate).
@@ -82,13 +81,13 @@ fill=white!10, fill opacity=0.75,text opacity=1] \bgroup%
 
 % transition: let's consider an example dark network
 \usebackgroundtemplate{
-\vbox to 0.9\paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=\paperwidth]{methnetwork.png}\hfil}} }
+\vbox to 0.9\paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=0.9\paperwidth]{methnetwork.png}\hfil}} }
 \easyframe{PROSECUTED METH PRODUCTION \&\ DISTRIBUTION GROUP}{}
 
 \easyframe{PROSECUTED METH PRODUCTION \&\ DISTRIBUTION GROUP}{
 \begin{transbox}
 \begin{itemize}
-\item<1-> individuals convicted, connected by association, from Judicial summaries
+\item<1-> individuals convicted, connected by association, from court summaries
 \item<2-> how might this data be flawed?
 \item<3-> if we take this as the model, even after adding roles, what do we know is unrepresented?
 \item<4-> given those issues: does simulation on this network -- which includes deriving network statistics and predictions from them -- make sense?
@@ -106,34 +105,32 @@ fill=white!10, fill opacity=0.75,text opacity=1] \bgroup%
 \item<5-> compare measures -- pseudoephedrine consumption, methamphetamine production, net profit rates -- to available estimates
 \end{itemize}
 \end{block}
-
 }
 
 \setbeamercovered{transparent}
 \easyframe{SIMULATING METH PRODUCTION}{
 \begin{block}{Relatively few parts, all written in Scala}
 \begin{description}
-\item[\texttt{World}]<2> meth consumption rate, pseudo cost 
-\item[\texttt{Supplier}s, \texttt{Retailer}s, \texttt{Wholesaler}]<3> margins and purchase or delivery efficiencies
-\item[\texttt{Middleman}]<4> margin, efficiency
+\item[\texttt{World}]<2> target meth consumption rate, pseudo cost 
+\item[\texttt{Supplier}, \texttt{Retailer}, \texttt{Wholesaler}]<3> margins and purchase or delivery efficiencies
+\item[\texttt{Middleman}]<4> margin, transaction efficiency
 \item[\texttt{Cook}]<5> margin, pseudo conversion efficiency
 \end{description}
 \end{block}
-\begin{block}{SIMPLE ECONOMIC FORCES ONLY}
-Agents try to net their margin per iteration.  Demand for meth inelastic.  No economies of scale.
+\begin{block}<6->{SIMPLE ECONOMIC FORCES ONLY}
+Agents try to net their margin per iteration.  Demand for meth inelastic.  No economies of scale.  No competition in roles.
 \end{block}
 }
 \setbeamercovered{}
 
 \easyframe{PARAMETER ESTIMATES\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}\cite{australian2008australiancrime}}{
-Use kilograms as reference mass unit, AUS \$\ as reference price unit
+Use kgs, AUS \$\, and months as reference units
+
 \begin{description}
-\item[Unit Meth per Unit Pseudo] 0.9
+\item[Meth produced per Pseudo] 0.9
 \item[Meth Conversion Efficiency] 0.5 - 1.0
-\item[Meth Consumption] average 10 doses per user per month, 0.0001 units per dose, 20 users per capita
+\item[Meth Consumption] 0.02 mass per 1000 people per time
 \item[thing] margins and purchase or delivery efficiencies
-\item[\texttt{Middleman}] margin, efficiency
-\item[\texttt{Cook}] margin, pseudo conversion efficiency
 \end{description}
 }
 
@@ -180,6 +177,21 @@ https://github.com/pearsonca/scala-commsim
 \easyframe{SUPPORTING MATERIAL}{
 \begin{block}{Meth Consumption}
 100 mg per dose; per capita: roughly 10 ``regular'' users (between weekly and monthly dose), roughly 10 ``dependent'' users
+\end{block}
+}
+
+\easyframe{SUPPORTING MATERIAL}{
+\begin{block}{World Offers}
+historical bought / historical paid = expected price per unit \\~\\
+offer = sought drug quantity / expected price per unit
+\end{block}
+}
+
+\easyframe{SUPPORTING MATERIAL}{
+\begin{block}{Retail Sale}
+historical bought / historical paid = average price per unit \\~\\
+target revenue per unit = average price per unit (1 + margin) \\~\\
+offer = sought drug quantity / expected price per unit
 \end{block}
 }
 
