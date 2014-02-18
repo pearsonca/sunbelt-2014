@@ -14,3 +14,5 @@ cacheSweaveStorage*
 
 template-*.pdf
 .Rproj.user
+
+*.bbl
