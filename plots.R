@@ -40,6 +40,8 @@ plot.price <- function(focag,drugs=T,prices=pricedat[[focag]],color=colors[focag
     sell <- prices$prec.sale
     buy <- prices$prec.purchase
   }
+#   if(any(sell>0)) lines(prices$time,sell,lty=1,col=color,...)
+#   if(any(buy>0)) lines(prices$time,buy,lty=3,col=color,...)
   lines(prices$time,sell,lty=1,col=color,...)
   lines(prices$time,buy,lty=3,col=color,...)
 }
@@ -50,9 +52,11 @@ YMAXprec <- 4  # NOTE: MAY NEED TO ADJUST YLIM!!
 plot(NA,NA,xlim=c(0,100),ylim=c(0,YMAXprec),xlab="",ylab="",main="Product: Precursors")
 mtext("Time in months",1,cex=2.5,line=4.5)
 mtext("Price (AUS $ per gram)",2,cex=2.5,line=4.5)
-lapply(levels(dat$agent),plot.price,drugs=F,lwd=4)
-legend(80,YMAXprec,bty="n",lty=1,col=colors,legend=levels(dat$agent),lwd=4,title="Seller")
-legend(60,YMAXprec,bty="n",lty=3,col=colors,legend=levels(dat$agent),lwd=4,title="Buyer")
+#lapply(levels(dat$agent),plot.price,drugs=F,lwd=4)
+use.prec <- c(1,2,4)
+lapply(levels(dat$agent)[use.prec],plot.price,drugs=F,lwd=4)
+legend(80,YMAXprec,bty="n",lty=1,col=colors[use.prec],legend=levels(dat$agent)[use.prec],lwd=4,title="Seller")
+legend(60,YMAXprec,bty="n",lty=3,col=colors[use.prec],legend=levels(dat$agent)[use.prec],lwd=4,title="Buyer")
 
 # Drugs
 YMAXdrug <- 500 # NOTE: MAY NEED TO ADJUST YLIM!!
