@@ -112,8 +112,8 @@ fill=white!10, fill opacity=0.75,text opacity=1] \bgroup%
 \begin{block}{Relatively few parts, all written in Scala}
 \begin{description}
 \item[\texttt{World}]<2> target meth consumption rate, pseudo cost 
-\item[\texttt{Supplier}, \texttt{Retailer}, \texttt{Wholesaler}]<3> margins and purchase or delivery efficiencies
-\item[\texttt{Middleman}]<4> margin, transaction efficiency
+\item[\texttt{Supplier}, \texttt{Retailer}, \texttt{Wholesaler}]<3> margins
+\item[\texttt{Middleman}]<4> margin
 \item[\texttt{Cook}]<5> margin, pseudo conversion efficiency
 \end{description}
 \end{block}
@@ -123,42 +123,43 @@ Agents try to net their margin per iteration.  Demand for meth inelastic.  No ec
 }
 \setbeamercovered{}
 
-\easyframe{PARAMETER ESTIMATES\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}\cite{australian2008australiancrime}}{
-Use kgs, AUS \$\, and months as reference units
+%\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}\cite{australian2008australiancrime}
+% \easyframe{PARAMETER ESTIMATES}{
+% Use kgs, AUS \$\, and months as reference units
+% 
+% \begin{description}
+% \item[Meth produced per Pseudo] 0.9
+% \item[Meth Conversion Efficiency] 0.5 - 1.0
+% \item[Meth Consumption] 0.02 mass per 1000 people per time
+% \item[thing] margins and purchase or delivery efficiencies
+% \end{description}
+% }
 
-\begin{description}
-\item[Meth produced per Pseudo] 0.9
-\item[Meth Conversion Efficiency] 0.5 - 1.0
-\item[Meth Consumption] 0.02 mass per 1000 people per time
-\item[thing] margins and purchase or delivery efficiencies
-\end{description}
-}
+\usebackgroundtemplate{
+\vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=\paperwidth]{drugprice.png}\hfil}} }
+\easyframe{}{}
 
-\setbeamercovered{transparent}
-\easyframe{STEADY STATE RESULTS}{
-\begin{description}
-\item[Street Price]<1>X per dose vs observed Y per dose
-\item[Gang Takehome]<2>X per month vs observed Y per month
-\end{description}
-}
-\setbeamercovered{}
+\usebackgroundtemplate{
+\vbox to \paperheight{\vfil\hbox to \paperwidth{\hfil\includegraphics[width=\paperwidth]{precprice.png}\hfil}} }
+\easyframe{}{}
+\usebackgroundtemplate{}
 
-\easyframe{PERTURBATIONS}{
-TODO series of background plots
-\begin{description}
-\item Increase Pseudo Cost at time T
-\item Increase Demand at time T
-\item Increase Margins at time T
-\item Decrease efficiencies at time T
-\end{description}
-}
+% \easyframe{PERTURBATIONS}{
+% TODO series of background plots
+% \begin{description}
+% \item Increase Pseudo Cost at time T
+% \item Increase Demand at time T
+% \item Increase Margins at time T
+% \item Decrease efficiencies at time T
+% \end{description}
+% }
 
 \easyframe{TODO}{
-\begin{block}{Next Steps}\begin{itemize}
+\begin{block}{Next Steps}\begin{description}
 \item[Observation Model] translate simulate outputs via filter to observations
 \item[Group Dynamics] intra- and intergroup competition, turnover of employees, customers 
 \item[Intervention Outcomes] single gang interventions, evolution of competing gangs
-\end{itemize}
+\end{description}
 \end{block}
 }
 
@@ -169,35 +170,36 @@ https://github.com/pearsonca/scala-commsim
 }
 
 \easyframe{REFERENCES}{
+\nocite{*}
 \footnotesize
 \bibliography{biblio}{}
 \bibliographystyle{plain}
 }
 
-\easyframe{SUPPORTING MATERIAL}{
-\begin{block}{Meth Consumption}
-100 mg per dose; per capita: roughly 10 ``regular'' users (between weekly and monthly dose), roughly 10 ``dependent'' users
-\end{block}
-}
+% \easyframe{SUPPORTING MATERIAL}{
+% \begin{block}{Meth Consumption}
+% 100 mg per dose; per capita: roughly 10 ``regular'' users (between weekly and monthly dose), roughly 10 ``dependent'' users
+% \end{block}
+% }
 
-\easyframe{SUPPORTING MATERIAL}{
-\begin{block}{World Offers}
-historical bought / historical paid = expected price per unit \\~\\
-offer = sought drug quantity / expected price per unit
-\end{block}
-}
+% \easyframe{SUPPORTING MATERIAL}{
+% \begin{block}{World Offers}
+% historical bought / historical paid = expected price per unit \\~\\
+% offer = sought drug quantity / expected price per unit
+% \end{block}
+% }
 
-\easyframe{SUPPORTING MATERIAL}{
-\begin{block}{Retail Sale}
-historical bought / historical paid = average price per unit \\~\\
-target revenue per unit = average price per unit (1 + margin) \\~\\
-provided units = offered / target revenue per unit
-\end{block}
-\begin{block}{Retail Purchase}
-historical bought / historical paid = average price per unit \\~\\
-target revenue per unit = average price per unit (1 + margin) \\~\\
-provided units = offered / target revenue per unit
-\end{block}
-}
+% \easyframe{SUPPORTING MATERIAL}{
+% \begin{block}{Retail Sale}
+% historical bought / historical paid = average price per unit \\~\\
+% target revenue per unit = average price per unit (1 + margin) \\~\\
+% provided units = offered / target revenue per unit
+% \end{block}
+% \begin{block}{Retail Purchase}
+% historical bought / historical paid = average price per unit \\~\\
+% target revenue per unit = average price per unit (1 + margin) \\~\\
+% provided units = offered / target revenue per unit
+% \end{block}
+% }
 
 \end{document}
