@@ -122,16 +122,17 @@ Agents try to net their margin per iteration.  Demand for meth inelastic.  No ec
 }
 \setbeamercovered{}
 
-\easyframe{PARAMETER ESTIMATES\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}\cite{australian2008australiancrime}}{
-Use kgs, AUS \$\, and months as reference units
-
-\begin{description}
-\item[Meth produced per Pseudo] 0.9
-\item[Meth Conversion Efficiency] 0.5 - 1.0
-\item[Meth Consumption] 0.02 mass per 1000 people per time
-\item[thing] margins and purchase or delivery efficiencies
-\end{description}
-}
+%\cite{gong2012profitable}\cite{mcketin2005estimating}\cite{ritter2012evaluating}\cite{australian2008australiancrime}
+% \easyframe{PARAMETER ESTIMATES}{
+% Use kgs, AUS \$\, and months as reference units
+% 
+% \begin{description}
+% \item[Meth produced per Pseudo] 0.9
+% \item[Meth Conversion Efficiency] 0.5 - 1.0
+% \item[Meth Consumption] 0.02 mass per 1000 people per time
+% \item[thing] margins and purchase or delivery efficiencies
+% \end{description}
+% }
 
 \setbeamercovered{transparent}
 \easyframe{STEADY STATE RESULTS}{
@@ -168,35 +169,36 @@ https://github.com/pearsonca/scala-commsim
 }
 
 \easyframe{REFERENCES}{
+\nocite{*}
 \footnotesize
 \bibliography{biblio}{}
 \bibliographystyle{plain}
 }
 
-\easyframe{SUPPORTING MATERIAL}{
-\begin{block}{Meth Consumption}
-100 mg per dose; per capita: roughly 10 ``regular'' users (between weekly and monthly dose), roughly 10 ``dependent'' users
-\end{block}
-}
+% \easyframe{SUPPORTING MATERIAL}{
+% \begin{block}{Meth Consumption}
+% 100 mg per dose; per capita: roughly 10 ``regular'' users (between weekly and monthly dose), roughly 10 ``dependent'' users
+% \end{block}
+% }
 
-\easyframe{SUPPORTING MATERIAL}{
-\begin{block}{World Offers}
-historical bought / historical paid = expected price per unit \\~\\
-offer = sought drug quantity / expected price per unit
-\end{block}
-}
+% \easyframe{SUPPORTING MATERIAL}{
+% \begin{block}{World Offers}
+% historical bought / historical paid = expected price per unit \\~\\
+% offer = sought drug quantity / expected price per unit
+% \end{block}
+% }
 
-\easyframe{SUPPORTING MATERIAL}{
-\begin{block}{Retail Sale}
-historical bought / historical paid = average price per unit \\~\\
-target revenue per unit = average price per unit (1 + margin) \\~\\
-provided units = offered / target revenue per unit
-\end{block}
-\begin{block}{Retail Purchase}
-historical bought / historical paid = average price per unit \\~\\
-target revenue per unit = average price per unit (1 + margin) \\~\\
-provided units = offered / target revenue per unit
-\end{block}
-}
+% \easyframe{SUPPORTING MATERIAL}{
+% \begin{block}{Retail Sale}
+% historical bought / historical paid = average price per unit \\~\\
+% target revenue per unit = average price per unit (1 + margin) \\~\\
+% provided units = offered / target revenue per unit
+% \end{block}
+% \begin{block}{Retail Purchase}
+% historical bought / historical paid = average price per unit \\~\\
+% target revenue per unit = average price per unit (1 + margin) \\~\\
+% provided units = offered / target revenue per unit
+% \end{block}
+% }
 
 \end{document}
