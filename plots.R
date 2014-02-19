@@ -46,19 +46,19 @@ plot.price <- function(focag,drugs=T,prices=pricedat[[focag]],color=colors[focag
 
 par(bty="L",lwd=2,cex.axis=1.5,cex.lab=2,mar=c(7,7,2,2))
 # Precursor
-YMAXprec <- 20  # NOTE: MAY NEED TO ADJUST YLIM!!
+YMAXprec <- 4  # NOTE: MAY NEED TO ADJUST YLIM!!
 plot(NA,NA,xlim=c(0,100),ylim=c(0,YMAXprec),xlab="",ylab="",main="Product: Precursors")
 mtext("Time",1,cex=2.5,line=4.5)
 mtext("Price",2,cex=2.5,line=4.5)
 lapply(levels(dat$agent),plot.price,drugs=F,lwd=4)
-legend(80,YMAXprec/3,bty="n",lty=1,col=colors,legend=levels(dat$agent),lwd=4,title="Seller")
-legend(60,YMAXprec/3,bty="n",lty=3,col=colors,legend=levels(dat$agent),lwd=4,title="Buyer")
+legend(80,YMAXprec,bty="n",lty=1,col=colors,legend=levels(dat$agent),lwd=4,title="Seller")
+legend(60,YMAXprec,bty="n",lty=3,col=colors,legend=levels(dat$agent),lwd=4,title="Buyer")
 
 # Drugs
-YMAXdrug <- 300 # NOTE: MAY NEED TO ADJUST YLIM!!
+YMAXdrug <- 500 # NOTE: MAY NEED TO ADJUST YLIM!!
 plot(NA,NA,xlim=c(0,100),ylim=c(0,YMAXdrug),xlab="",ylab="",main="Product: Drugs")
 mtext("Time",1,cex=2.5,line=4.5)
 mtext("Price",2,cex=2.5,line=4.5)
 lapply(levels(dat$agent),plot.price,drugs=T,lwd=4)
-legend(80,YMAXdrug/3,bty="n",lty=1,col=colors,legend=levels(dat$agent),lwd=4,title="Seller")
-legend(60,YMAXdrug/3,bty="n",lty=3,col=colors,legend=levels(dat$agent),lwd=4,title="Buyer")
+legend(80,YMAXdrug,bty="n",lty=1,col=colors,legend=levels(dat$agent),lwd=4,title="Seller")
+legend(60,YMAXdrug,bty="n",lty=3,col=colors,legend=levels(dat$agent),lwd=4,title="Buyer")
