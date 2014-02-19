@@ -63,6 +63,7 @@ YMAXdrug <- 500 # NOTE: MAY NEED TO ADJUST YLIM!!
 plot(NA,NA,xlim=c(0,100),ylim=c(0,YMAXdrug),xlab="",ylab="",main="Product: Drugs")
 mtext("Time in months",1,cex=2.5,line=4.5)
 mtext("Price (AUS $ per gram)",2,cex=2.5,line=4.5)
-lapply(levels(dat$agent),plot.price,drugs=T,lwd=4)
-legend(80,YMAXdrug,bty="n",lty=1,col=colors,legend=levels(dat$agent),lwd=4,title="Seller")
-legend(60,YMAXdrug,bty="n",lty=3,col=colors,legend=levels(dat$agent),lwd=4,title="Buyer")
+use.drug <- -4
+lapply(levels(dat$agent)[use.drug],plot.price,drugs=T,lwd=4)
+legend(80,YMAXdrug,bty="n",lty=1,col=colors[use.drug],legend=levels(dat$agent)[use.drug],lwd=4,title="Seller")
+legend(60,YMAXdrug,bty="n",lty=3,col=colors[use.drug],legend=levels(dat$agent)[use.drug],lwd=4,title="Buyer")
